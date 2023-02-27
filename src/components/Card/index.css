@@ -123,7 +123,6 @@
 
 .btn {
 	padding: 10px 18px;
-	margin-left: -10px;
 	font-size: 16px;
 	font-weight: 700;
 	line-height: 20px;
@@ -133,14 +132,8 @@
 	transition: background-color .3s;
 }
 
-.btn:hover {
-	background-color: #1a1a1a;
-	color:#FFE44D;
-}
-
 .btn_type_primary {
 	background-color: #FFE44D;
-	margin-left: 46px;
 }
 .btn_type_primary:hover {
 	background-color: #FFAA0D;
@@ -162,8 +155,4 @@
 .tag_type_sale {
 	background-color: #01A54E;
 	color: #FFFFFF;
-}
-
-header span{
-	margin-right: 46px;
 }
