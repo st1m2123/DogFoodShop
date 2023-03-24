@@ -1,0 +1,102 @@
+.form {
+    display: flex;
+    flex-direction: column;
+    width: 356px;
+    gap: 8px;
+}
+
+h3 {
+    width: 356px;
+    height: 32px;
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 28px;
+    line-height: 32px;
+    display: flex;
+    align-items: center;
+    color: #000000;
+}
+
+input {
+    border-radius: 12px;
+    width: 356px;
+    height: 48px;
+    border: 1px solid #CFD8DC;
+}
+
+.submitBtn {
+    background: #FFE44D;
+    border-radius: 55px;
+    width: 356px;
+    height: 48px;
+    border: 0px;
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+input:focus {
+    border: 1px solid #FFE44D;
+    outline: none;
+}
+
+.linkBtn {
+    border-radius: 55px;
+    width: 356px;
+    height: 48px;
+    border: solid 1px;
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.closeBtn{
+    align-self: flex-end;
+    font-size: 25px;
+}
+.regRules {
+    font-family: 'Nunito';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    color: #7B8E98;
+
+}
+
+.windowForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 16px;
+    position: relative;
+    width: 420px;
+    background: #FFFFFF;
+    box-shadow: 0px 2px 8px rgba(40, 41, 61, 0.08), 0px 20px 32px rgba(96, 97, 112, 0.24);
+    border-radius: 20px;
+    margin: 0 auto;
+}
+
+input:focus::placeholder{
+    font-size: 15px;
+    transform: translateX(10px) translateY(-15px); 
+    color: black;
+}
+
+@font-face {
+    font-family: "Nunito";
+    src: url('/src/components/forms/Nunito-Regular.ttf');
+}

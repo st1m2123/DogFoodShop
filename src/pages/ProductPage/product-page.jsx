@@ -7,14 +7,14 @@ import { Product } from "../../components/Product/product"
 import Spinner from "../../components/Spinner"
 import { CardContext } from "../../context/cardContext"
 import { useApi } from "../../hooks/useApi"
-import api from "../../utils/api"
+import Api from "../../utils/api"
 
 // const ID_PRODUCT = '622c77e877d63f6e70967d22';
 export const ProductPage = () => {
     const { productId } = useParams();
     const { handleLike} = useContext(CardContext);
 
-    const handleGetProduct = useCallback(() => api.getProductById(productId), [productId]);
+    const handleGetProduct = useCallback(() => Api.getProductById(productId), [productId]);
 
     const {
       data: product, 
@@ -40,6 +40,7 @@ export const ProductPage = () => {
             }
             {!isLoading && errorState && <NotFound/>}
             </div>
+            {console.log(Api.getReview(productId))}
       </>
     )
 }

@@ -6,6 +6,7 @@
 	border-radius: 55px;
 	text-decoration: none;
 	display: inline-block;
+	text-align: center;
 	transition: background-color .3s;
     color: currentColor;
 }
@@ -20,6 +21,7 @@
 
 .secondary {
 	background-color: transparent;
+	border: 1px solid black;
 }
 .secondary:hover {
 	color: #F44336;

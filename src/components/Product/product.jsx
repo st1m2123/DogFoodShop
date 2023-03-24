@@ -9,10 +9,11 @@ import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { UserContext } from '../../context/userContext';
 import { ContentHeader } from '../ContentHeader/content-header';
+import Comments from '../forms/comments';
 
 export const Product = ({ onProductLike, pictures, likes = [], reviews, tags, name, price, discount, description, wight, _id}) => {
     const {user: currentUser} = useContext(UserContext);
-
+    const idProd = _id;
     const navigate = useNavigate()
     const discount_price = calcDiscountPrice(price, discount);
     const isLike = isLiked(likes, currentUser?._id);
@@ -64,7 +65,6 @@ export const Product = ({ onProductLike, pictures, likes = [], reviews, tags, na
                 </div>
             </div>
         </div>
-
         <div className={s.box}>
             <h2 className={s.title}>Описание</h2>
             <p className={s.subtitle} dangerouslySetInnerHTML={desctiptionHTML}></p>
@@ -92,7 +92,7 @@ export const Product = ({ onProductLike, pictures, likes = [], reviews, tags, na
 						<p>Следует учесть высокую калорийность продукта.</p>
 					</div>
 				</div>
-
+            <Comments idProduct={idProd}/>
         </div>
     </>
     )

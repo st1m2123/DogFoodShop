@@ -11,13 +11,17 @@ import useDebounce from '../../hooks/useDebounce';
 import { isLiked } from '../../utils/product';
 import { CatalogPage } from '../../pages/CatalogPage/catalog-page';
 import { ProductPage } from '../../pages/ProductPage/product-page';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { NotFoundPage } from '../../pages/NotFoundPage/not-found-page';
 import { UserContext } from '../../context/userContext';
 import { CardContext } from '../../context/cardContext';
 import { SortContext } from '../../context/sortContext';
 import { FaqPage } from '../../pages/FAQPage/faq-page';
 import { FavoritePage } from '../../pages/FavoritePage/favorite-page';
+import Modal from '../modal/modal';
+import RegFrom from '../forms/registration'
+import Login from '../forms/login';
+import Profile from '../forms/profile';
 
 function App() {
   const [cards, setCards] = useState([]);
@@ -27,8 +31,14 @@ function App() {
   const debounceSearchQuery = useDebounce(searchQuery, 300);
   const [favorites, setFavorites] = useState([]);
   const [selectedTabId, setSelectedTabId] = useState("cheap");
-
-
+  const [contacts, setContacts] = useState([]);
+  const location = useLocation();
+  const backgroundLocation = location.state?.backgroundLocation;
+  const initialPath = location.state?.initialPath;
+  
+  const addContact = (contactInfo) => {
+    setContacts([...contacts, contactInfo]);
+  }
   const navigate = useNavigate()
   const handleRequest = useCallback(() => {
     setIsLoading(true);
@@ -100,8 +110,11 @@ function App() {
   return (
     <SortContext.Provider value={{ selectedTabId, setSelectedTabId }}>
       <UserContext.Provider value={{ user: currentUser, isLoading }}>
+        {/* <Modal >
+          <RegFrom addContact={addContact}/>
+        </Modal> */}
         <CardContext.Provider value={{ cards, favorites, handleLike: handleProductLike }}>
-          <Header>
+          <Header >
             <>
               <Logo className="logo logo_place_header" href="/" />
               <Routes>
@@ -116,7 +129,7 @@ function App() {
           </Header>
           <main className='content container'>
             <SeachInfo searchText={searchQuery} />
-            <Routes>
+            <Routes location={backgroundLocation && {...backgroundLocation, pathname: initialPath || location}}>
               <Route index element={
                 <CatalogPage />
               } />
@@ -129,9 +142,25 @@ function App() {
               <Route path='/favorites' element={
                 <FavoritePage />}
               />
+              <Route path='/registration' element={<RegFrom/>} />
+              <Route path='/login' element={<Login/>} />
               <Route path='*' element={<NotFoundPage />} />
+              <Route path='/profile' element={<Profile/>} />
             </Routes>
-
+            {backgroundLocation && (
+              <Routes>
+                <Route path='/registration' element={
+                  <Modal>
+                    <RegFrom linkState={{backgroundLocation: location, initialPath}}/>
+                  </Modal>
+                }/>
+                <Route path='/login' element={
+                  <Modal>
+                    <Login linkState={{backgroundLocation: location, initialPath}}/>
+                  </Modal>
+                }/>
+              </Routes>
+            )}
           </main>
           <Footer />
         </CardContext.Provider>

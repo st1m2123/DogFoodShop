@@ -28,6 +28,7 @@
 
 .iconsMenu {
 	display: flex;
+	gap: 25px;
 }
 
 .favoritesLink {
